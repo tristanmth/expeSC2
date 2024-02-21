@@ -1,17 +1,24 @@
-#container,body {
-    position: absolute center;
-}
 
-button #btn_yes{
-    position: absolute left;
-}
+td.affiche{
+    text-align: center;
+    width: 100px;
+    border: 2px solid rgb(0, 0, 0);
 
-button #btn_no{
-    position: absolute right;
 }
+td.vide{
+    width: 100px;
+    border: 2px solid rgb(0, 0, 0);
 
-.repondre {
-    height: 1em;
-    width: 1em;
-    background-color: darkgray;
+}
+.bouton{
+    width: 100px;
+    height: 100px;
+    background-color: #000000;
+    color: #ffffff;
+    text-align: center;
+    
+}
+body {
+    background-color: black; /* Le fond de la page sera noir */
+    color: white; /* Le texte de la page sera blanc */
 }
