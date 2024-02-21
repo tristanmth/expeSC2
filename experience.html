@@ -1,0 +1,52 @@
+<html>
+
+   <!--
+    Expérience de Vassili Zarch et Helloïs Bernard
+   -->
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="experience.css">
+        <script src="savedata.js" type="application/javascript"></script>
+        <script type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center" id="container">
+
+            <h3 id="question_title"></h3>   
+            <div class="flex-row">
+                <button id="btn_repondre" hidden onclick="repondre()" class="repondre"></button>
+                <div>
+                    <button id="btn_yes" style="margin-right: 3em;" hidden class="btn btn-success">Oui</button>
+                    <button id="btn_no" style="margin-left: 3em;" hidden class="btn btn-danger">Non</button>
+                </div>
+                <div>
+                    <button id="btn_no_norder" style="margin-right: 3em;" hidden class="btn btn-danger">Non</button>
+                    <button id="btn_yes_norder" style="margin-left: 3em;" hidden class="btn btn-success">Oui</button>
+                </div>
+            </div>
+            <p id="info_p">
+                Bienvenue dans notre experience comportementale !
+                <br/>
+                Dans le cadre de notre Master, nous devons tester le comportement d'un utilisateur après modification de certains aspects de son environnement.
+                <br/>
+                Vous allez être confronté a une serie de 16 questions auquels vous devez répondre par oui ou par non apres les avoir lues attentivement.
+                Pour répondre à ces questions vous devrez tout d'abord cliquer sur le bouton gris situé au centre de l'écran, apparaissant au début de toutes les questions.
+                <br/>
+                <b>En cliquant sur "Debuter l'experience" vous consentez a l'utilisation de vos données a des fins statistiques.</b>
+                <b>Mais tout d'abord quelques informations à renseigner</b>
+                <form id="formulaire">
+                    <label>Numéro de passage:</label>
+                    <input type="text" id="name" name="user_name" />
+                    <br/><label>Avez-vous une anomalie de la vision affectant la couleur (daltonisme) ? (Yes/No)</label>
+                    <input type="text" id="respond" name="respond"/>
+                </form>
+            </p>
+            <button id="btn_launch" class="btn btn-primary" onclick="launchExp(0)">Debuter l'experience</button>
+            <h3 id="fin_title" hidden>Experience terminé ! Vous pouvez fermer la page.</h3>
+            
+        </div>
+        
+    </body>
+</html>
