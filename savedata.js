@@ -1,9 +1,11 @@
-var start_time = new Date().getTime();
-var end_time = new Date().getTime(); ;
-var yes = no = langue = type = color = time = idquestion = String();
-var randomChar = [1,2,3,4,5,6,7,8];
-var mesures = new Float32Array();
-savedata =  function (data) {
+let start_time = new Date().getTime();
+let end_time = new Date().getTime(); ;
+let yes = no = langue = type = color = time = idquestion = String();
+let randomChar = [1,2,3,4,5,6,7,8];
+let mesures = [];
+let mesureX = [];
+let mesureY = [];
+let savedata = (data) => {
 
     // Creating a XHR object
     let xhr = new XMLHttpRequest();
@@ -19,51 +21,47 @@ savedata =  function (data) {
     console.log(data);
     xhr.send (JSON.stringify (data));
 }
- getRandomInt = function(max) {
+let getRandomInt = (max) => {
     return Math.floor(Math.random() * max);
 }
-
-   (function() {
+let following = () => {
     document.onmousemove = handleMouseMove;
-    let valX = valY =  maxX = maxY = 0;
-    let minX = minY = Infinity;
+    let maxY = 0, maxX = 0, valX = 0, valY = 0, minX = Infinity, minY = Infinity;
     function handleMouseMove(event) {
-        var eventDoc, doc, body;
 
-        event = event || window.event; // IE-ism
-
-        // If pageX/Y aren't available and clientX/Y are,
-        // calculate pageX/Y - logic taken from jQuery.
-        // (This is to support old IE)
         if (event.pageX == null && event.clientX != null) {
-            eventDoc = (event.target && event.target.ownerDocument) || document;
-            doc = eventDoc.documentElement;
-            body = eventDoc.body;
+            let eventDoc = (event.target && event.target.ownerDocument) || document,
+                doc = eventDoc.documentElement, body = eventDoc.body;
 
-            event.pageX = event.clientX +
-              (doc && doc.scrollLeft || body && body.scrollLeft || 0) -
-              (doc && doc.clientLeft || body && body.clientLeft || 0);
-            event.pageY = event.clientY +
-              (doc && doc.scrollTop  || body && body.scrollTop  || 0) -
-              (doc && doc.clientTop  || body && body.clientTop  || 0 );
+            event.pageX = event.clientX + (doc && doc.scrollLeft || body && body.scrollLeft || 0) -
+                (doc && doc.clientLeft || body && body.clientLeft || 0);
+
+            event.pageY = event.clientY + (doc && doc.scrollTop  || body && body.scrollTop  || 0) -
+                (doc && doc.clientTop  || body && body.clientTop  || 0 );
         }
+
         if(event.pageX > maxX)maxX = event.pageX;
         if(event.pageY > maxY)maxY = event.pageY;
         if(event.pageX < minX)minX = event.pageX;
-        if(event.pageX < minY)minX = event.pageY;
-        console.log(event.pageX)
-        console.log(event.pageY)
+        if(event.pageY < minY)minY = event.pageY;
+
+        valX = normalize(event.pageX, maxX, minX);
+        valY = 1 - normalize(event.pageY, maxY, minY);
+
+        mesures[0] = valX;
+        mesures[1] =  valY;
     }
-})();
-
-
-
-isHidden = function(el) {
+};
+let interVal = setInterval(function () {
+    //if(mesures.length !== 0){console.log(mesures)}
+    mesureX = mesures[0];
+    mesureY = mesures[1];
+},13);
+let isHidden = (el) => {
     var style = window.getComputedStyle(el);
     return (style.display === 'none')
 }
-
- repondre = function() {
+let repondre = () => {
   // lancer timer
     start_time = new Date().getTime();
     document.getElementById("btn_repondre").hidden = "true";
@@ -75,9 +73,8 @@ isHidden = function(el) {
         document.getElementById("btn_no_norder").hidden = false;
     }
 }
-normalize = function(val, max, min){return (val - min) / (max - min);}
-
-launchExp = function(num_question,reponse){
+let normalize = (val, max, min) => {return (val - min) / (max - min);}
+let launchExp = (num_question,reponse) => {
     var color_param;
     var reponse = reponse || null;
     var lang_param,amb_param;
@@ -157,4 +154,7 @@ launchExp = function(num_question,reponse){
             document.getElementById("btn_no").addEventListener('click', function() {launchExp(num_question,["non",lang_param,amb_param,color_param]);});
             document.getElementById("btn_yes_norder").addEventListener('click', function() {launchExp(num_question,["oui",lang_param,amb_param,color_param]);});
             document.getElementById("btn_no_norder").addEventListener('click', function() {launchExp(num_question,["non",lang_param,amb_param,color_param]);});
-        }
+}
+
+window.addEventListener('DOMContentLoaded', following);
+
