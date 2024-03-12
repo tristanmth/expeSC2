@@ -8,21 +8,20 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link rel="stylesheet" href="experience.css">
         <script src="savedata.js" type="application/javascript"></script>
-        <script type="text/javascript">
-        </script>
+
     </head>
     <body>
         <div class="Couleur">
-            <button class="bouton left-top">ROUGE</button>
-            <button class="bouton right-top">BLEU</button>   
-            <button class="bouton left-bottom">JAUNE</button>
-            <button class="bouton right-bottom">VERT</button>
+            <button class="bouton left-top" onclick="reponse('rouge')">ROUGE</button>
+            <button class="bouton right-top" onclick="reponse('bleu')">BLEU</button>
+            <button class="bouton left-bottom" onclick="reponse('jaune')">JAUNE</button>
+            <button class="bouton right-bottom" onclick="reponse('vert')">VERT</button>
         </div>
         <div class="center-bottom">
-            <button id="StartButton"> START</button>
+            <button id="StartButton" onclick="launchExp()"> START</button>
         </div>
         <div id="wordContainer" class="center-middle hidden">
-            <p id="word">WORLD</p>
+            <p id="word"></p>
         </div>        
     </body>
 </html>
