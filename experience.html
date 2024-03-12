@@ -1,7 +1,7 @@
 <html>
 
    <!--
-    Expérience de Vassili Zarch et Helloïs Bernard
+    Expérience de Vassili Zarch et Tristan Mathon
    -->
     <head>
         <meta charset="utf-8">
@@ -12,26 +12,17 @@
         </script>
     </head>
     <body>
-        <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center" id="container">
-            <table width="1500px" height="200px">
-                <tr>
-                    <td class="vide"></td>
-                    <td class="affiche"><button class="bouton" id="bleu">BLEU</button></td>
-                    <td class="vide"></td>
-                    <td class="vide"></td>
-                    <td class="affiche"><button class="bouton" id="jaune">JAUNE</button></td>
-                    <td class="vide"></td>
-                </tr>
-                <tr>
-                    <td class="affiche"><button class="bouton" id="rouge">ROUGE</button></td>
-                    <td class="vide"></td>
-                    <td class="vide"></td>
-                    <td class="vide"></td>
-                    <td class="vide"></td>
-                    <td class="affiche"><button class="bouton" id="vert">VERT</button></td>
-                </tr>
-            </table>
+        <div class="Couleur">
+            <button class="bouton left-top">ROUGE</button>
+            <button class="bouton right-top">BLEU</button>   
+            <button class="bouton left-bottom">JAUNE</button>
+            <button class="bouton right-bottom">VERT</button>
         </div>
-        
+        <div class="center-bottom">
+            <button id="StartButton"> START</button>
+        </div>
+        <div id="wordContainer" class="center-middle hidden">
+            <p id="word">WORLD</p>
+        </div>        
     </body>
 </html>
