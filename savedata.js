@@ -26,45 +26,28 @@ let getRandomInt = (max) => {
     return Math.floor(Math.random() * max);
 }
 let following = () => {
-    document.onmousemove = handleMouseMove;
     let maxY = 0, maxX = 0, valX = 0, valY = 0, minX = Infinity, minY = Infinity;
-    function handleMouseMove(event) {
+    onmousemove = function(e){
+        if(e.pageX > maxX)maxX = e.pageX;
+        if(e.pageY > maxY)maxY = e.pageY;
+        if(e.pageX < minX)minX = e.pageX;
+        if(e.pageY < minY)minY = e.pageY;
 
-        if (event.pageX == null && event.clientX != null) {
-            let eventDoc = (event.target && event.target.ownerDocument) || document,
-                doc = eventDoc.documentElement, body = eventDoc.body;
-
-            event.pageX = event.clientX + (doc && doc.scrollLeft || body && body.scrollLeft || 0) -
-                (doc && doc.clientLeft || body && body.clientLeft || 0);
-
-            event.pageY = event.clientY + (doc && doc.scrollTop  || body && body.scrollTop  || 0) -
-                (doc && doc.clientTop  || body && body.clientTop  || 0 );
-        }
-
-        if(event.pageX > maxX)maxX = event.pageX;
-        if(event.pageY > maxY)maxY = event.pageY;
-        if(event.pageX < minX)minX = event.pageX;
-        if(event.pageY < minY)minY = event.pageY;
-
-        valX = normalize(event.pageX, maxX, minX);
-        valY = 1 - normalize(event.pageY, maxY, minY);
+        valX = normalize(e.pageX, maxX, minX);
+        valY = 1 - normalize(e.pageY, maxY, minY);
 
         mesures[0] = valX;
         mesures[1] =  valY;
     }
 };
 
-let isHidden = (el) => {
-    let style = window.getComputedStyle(el);
-    return (style.display === 'none')
-}
-
 let normalize = (val, max, min) => {return (val - min) / (max - min);}
 let launchExp = () => {
     mesureX.push('start');
     mesureY.push('start');
+    document.querySelector("div[id=wordContainer]").hidden = false;
+    document.querySelector("div[id=order]").hidden = true;
     interVal = setInterval(function () {
-        if(mesures !== 0)console.log(mesures)
         mesureX.push(mesures[0]);
         mesureY.push(mesures[1]);
     },13);
@@ -87,16 +70,16 @@ let launchExp = () => {
             document.getElementById("word").textContent = "JAUNE";
             break;
         case 5:
-            document.getElementById("word").textContent = "dvorak";
+            document.getElementById("word").textContent = "JAUNE";
             break;
         case 6:
-            document.getElementById("word").textContent = "azerty";
+            document.getElementById("word").textContent = "VERT";
             break;
         case 7: 
-            document.getElementById("word").textContent = "qwerty";
+            document.getElementById("word").textContent = "BLEU";
             break;
         case 8: 
-            document.getElementById("word").textContent = "bepo";
+            document.getElementById("word").textContent = "ROUGE";
             break; 
         default:
             clearInterval(interVal)
@@ -109,7 +92,10 @@ let launchExp = () => {
 function reponse(reponse) {
     clearInterval(interVal)
     end_time = new Date().getTime();
-    elapse = end_time - start_time;
+    document.querySelector("div[id=wordContainer]").hidden = true;
+    let elapse = end_time - start_time;
+    console.log(elapse)
+    if(elapse>=500)document.querySelector("div[id=order]").hidden = false;
     mesureX.push(elapse);
     mesureY.push(elapse);
     mesureX.push(reponse);
