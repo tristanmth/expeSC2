@@ -10,7 +10,7 @@ let savedata = (data) => {
 
     // Creating a XHR object
     let xhr = new XMLHttpRequest();
-    let url = "../savedata.php";
+    let url = "savedata.php";
 
     // open a connection
     xhr.open ("POST", url, true);
@@ -42,52 +42,71 @@ let following = () => {
 };
 
 let normalize = (val, max, min) => {return (val - min) / (max - min);}
+
 let launchExp = () => {
     mesureX.push('start');
     mesureY.push('start');
+
     document.querySelector("div[id=wordContainer]").hidden = false;
     document.querySelector("div[id=order]").hidden = true;
     interVal = setInterval(function () {
         mesureX.push(mesures[0]);
         mesureY.push(mesures[1]);
     },13);
+    
     num_question++;
     let random = randomChar[getRandomInt(8 - num_question)];
     randomChar = randomChar.filter(item => item !== random);
     start_time = new Date().getTime();
-
+    
+    let word = document.getElementById("word");
+    let congruence=false;
+    if(getRandomInt(10)<=7){
+      congruence = true
+    }
     switch(parseInt(random)) {
         case 1:
-            document.getElementById("word").textContent = "ROUGE";
+            word.textContent = "ROUGE";//0.80 RED & 0.20 GREEN
+            congruence?  word.style.color = 'red': word.style.color = "green";
             break;
         case 2: 
-            document.getElementById("word").textContent = "BLEU";
+            word.textContent = "BLEU";
+            congruence?  word.style.color = 'yellow': word.style.color = "blue";
             break;
         case 3:
-            document.getElementById("word").textContent = "VERT";
+            word.textContent = "VERT";
+            congruence?  word.style.color = 'green': word.style.color = "red";
             break;
         case 4:
-            document.getElementById("word").textContent = "JAUNE";
+            word.textContent = "JAUNE";
+            congruence?  word.style.color = 'yellow': word.style.color = "red";
             break;
         case 5:
-            document.getElementById("word").textContent = "JAUNE";
+            word.textContent = "JAUNE";
+            congruence?  word.style.color = 'blue': word.style.color = "yellow";
+
             break;
         case 6:
-            document.getElementById("word").textContent = "VERT";
+            word.textContent = "VERT";
+            congruence?  word.style.color = 'red': word.style.color = "green";
             break;
         case 7: 
-            document.getElementById("word").textContent = "BLEU";
+            word.textContent = "BLEU";
+            congruence?  word.style.color = 'yellow': word.style.color = "blue";
             break;
         case 8: 
-            document.getElementById("word").textContent = "ROUGE";
+            word.textContent = "ROUGE";//0.20 RED
+            congruence?  word.style.color = 'green': word.style.color = "red";
             break; 
         default:
             clearInterval(interVal)
-            document.getElementById("word").textContent = "";
+            word.textContent = "";
             savedata ({mesureX,mesureY});
             break;
     }
 }
+
+
 
 function reponse(reponse) {
     clearInterval(interVal)
@@ -103,4 +122,5 @@ function reponse(reponse) {
     mesures = []
 }
 window.addEventListener('DOMContentLoaded', following);
+
 
