@@ -1,0 +1,28 @@
+<html>
+
+<!--
+ Expérience de Vassili Zarch et Tristan Mathon
+-->
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="experience.css">
+    <script src="savedata.js" type="application/javascript" defer></script>
+
+</head>
+<body>
+<div class="Couleur">
+    <div id="order" class="center-middle" hidden="hidden" >Bouge toi</div>
+    <button class="bouton left-top" onclick="reponse('red')">ROUGE</button>
+    <button class="bouton right-top" onclick="reponse('blue')">BLEU</button>
+    <button class="bouton left-bottom" onclick="reponse('yellow')">JAUNE</button>
+    <button class="bouton right-bottom" onclick="reponse('green')">VERT</button>
+</div>
+<div class="center-bottom">
+    <button id="StartButton" onclick="launchExp('Incongruence')"> START</button>
+</div>
+<div id="wordContainer" class="center-middle" hidden="hidden">
+    <p id="word"></p>
+</div>
+</body>
+</html>

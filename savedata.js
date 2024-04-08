@@ -7,8 +7,8 @@ let mesureY = [];
 let num_question = 0;
 let interVal;
 let bougeInter;
-let congruence= false;
-let prop_congruence;
+let congruence;
+let prop_congruence =false;
 let bouge = false;
 let count = 2;
 let X0;
@@ -22,6 +22,57 @@ const wordContainer = document.querySelector("div[id=wordContainer]");
 const word = document.getElementById("word");
 const order = document.querySelector("div[id=order]");
 
+const colorMapCongruence = [
+    { word: "ROUGE", color: 'red' ,congruence_color: true},
+    { word: "ROUGE", color: 'red' ,congruence_color: true},
+    { word: "ROUGE", color: 'red' ,congruence_color: true},
+    { word: "ROUGE", color: 'red' ,congruence_color: true},
+    { word: "VERT", color: "green",congruence_color: true },
+    { word: "VERT", color: "green",congruence_color: true },
+    { word: "VERT", color: "green" ,congruence_color: true},
+    { word: "VERT", color: "green" ,congruence_color: true},
+    { word: "VERT", color: "red" ,congruence_color: false},
+    { word: "ROUGE", color: "green" ,congruence_color: false},
+
+    { word: "BLEU", color: "yellow" ,congruence_color: true},
+    { word: "BLEU", color: "yellow" ,congruence_color: true},
+    { word: "BLEU", color: "yellow" ,congruence_color: true},
+    { word: "BLEU", color: "yellow" ,congruence_color: true},
+    { word: "JAUNE", color: "blue" ,congruence_color: true},
+    { word: "JAUNE", color: "blue" ,congruence_color: true},
+    { word: "JAUNE", color: "blue" ,congruence_color: true},
+    { word: "JAUNE", color: "blue" ,congruence_color: true},
+
+    { word: "BLEU", color: "blue",congruence_color: false },
+    { word: "JAUNE", color: "yellow" ,congruence_color: false},
+
+];
+
+const colorMapIncongruence = [
+    { word: "ROUGE", color: 'red',congruence_color: true},
+    { word: "VERT", color: "green" ,congruence_color: true},
+    { word: "VERT", color: "red",congruence_color: false },
+    { word: "VERT", color: "red",congruence_color: false },
+    { word: "VERT", color: "red" ,congruence_color: false},
+    { word: "VERT", color: "red" ,congruence_color: false},
+    { word: "ROUGE", color: "green",congruence_color: false },
+    { word: "ROUGE", color: "green" ,congruence_color: false},
+    { word: "ROUGE", color: "green",congruence_color: false },
+    { word: "ROUGE", color: "green",congruence_color: false },
+
+    { word: "BLEU", color: "blue" ,congruence_color: true},
+    { word: "JAUNE", color: "yellow",congruence_color: true },
+    { word: "BLEU", color: "blue" ,congruence_color: true},
+    { word: "JAUNE", color: "yellow" ,congruence_color: true},
+    { word: "BLEU", color: "blue" ,congruence_color: true},
+    { word: "JAUNE", color: "yellow" ,congruence_color: true},
+    { word: "BLEU", color: "blue" ,congruence_color: true},
+    { word: "JAUNE", color: "yellow" ,congruence_color: true},
+
+    { word: "BLEU", color: "yellow",congruence_color: false },
+    { word: "JAUNE", color: "blue" ,congruence_color: false},
+
+];
 let savedata = (data) => {
 
     // Creating a XHR object
@@ -59,9 +110,12 @@ let following = () => {
 
 let normalize = (val, max, min) => {return (val - min) / (max - min);}
 
-let launchExp = () => {
-    mesureX.push('start:'+num_question);
-    mesureY.push('start:'+num_question);
+let launchExp = (congruent) => {
+    prop_congruence = congruent === 'congruence';
+
+    congruence = congruent;
+    mesureX.push('start:'+ID);
+    mesureY.push('start:'+ID);
     mesureX.push('{');
     mesureY.push('{');
 
@@ -95,61 +149,21 @@ let launchExp = () => {
         }
     }, 500);
     num_question++;
-    let random = randomChar[getRandomInt(8 - num_question)];
+    let random = randomChar[getRandomInt(20 - num_question)];
     randomChar = randomChar.filter(item => item !== random);
     start_time = new Date().getTime();
 
-    if(getRandomInt(10)<=7){
-      congruence = true
-    }
-    switch(parseInt(random)) {
-        case 1:
-            word.textContent = "ROUGE";//0.80 RED & 0.20 GREEN
-            congruence?  word.style.color = 'red': word.style.color = "green";
-            prop_congruence = 1;
-            break;
-        case 2: 
-            word.textContent = "BLEU";
-            congruence?  word.style.color = "yellow": word.style.color = "blue";
-            prop_congruence = 1;
-            break;
-        case 3:
-            word.textContent = "VERT";
-            congruence?  word.style.color = "green": word.style.color = "red";
-            prop_congruence = 1;
-            break;
-        case 4:
-            word.textContent = "JAUNE";
-            congruence?  word.style.color = "yellow": word.style.color = "red";
-            prop_congruence = 1;
-            break;
-        case 5:
-            word.textContent = "JAUNE";
-            congruence?  word.style.color = "blue": word.style.color = "yellow";
-            prop_congruence = 2;
-            break;
-        case 6:
-            word.textContent = "VERT";
-            congruence?  word.style.color = "red": word.style.color = "green";
-            prop_congruence = 2;
-            break;
-        case 7: 
-            word.textContent = "BLEU";
-            congruence?  word.style.color = "yellow": word.style.color = "blue";
-            prop_congruence = 2;
-            break;
-        case 8: 
-            word.textContent = "ROUGE";//0.20 RED
-            congruence?  word.style.color = "green": word.style.color = "red";
-            prop_congruence = 2;
-            break; 
-        default:
-            clearInterval(interVal)
-            clearInterval(bougeInter)
-            console.log(mesureX)
-            word.textContent = "";
-            savedata ({mesureX,mesureY});
-            break;
+
+    let colorMap = prop_congruence ? colorMapCongruence : colorMapIncongruence;
+    random = parseInt(random);
+    if (colorMap[random]) {
+        word.textContent = colorMap[random].word;
+        word.style.color = colorMap[random].color;
+        congruence = colorMap[random].congruence_color;
+    } else {
+        clearInterval(interVal);
+        word.textContent = "";
+        savedata({ mesureX, mesureY });
     }
 }
 
@@ -173,13 +187,14 @@ function reponse(reponse) {
     mesureY.push("proportion {"+ prop_congruence + "}");
     mesureX.push("réponse {"+reponse + "}");
     mesureY.push("réponse {"+reponse + "}");
-    mesureX.push("vrai "+reponse===word.style.color);
-    mesureY.push("vrai "+reponse===word.style.color);
+    mesureX.push(reponse===word.style.color);
+    mesureY.push(reponse===word.style.color);
     mesureX.push("}");
     mesureY.push("}");
 
     mesures = []
 }
 window.addEventListener('DOMContentLoaded', following);
+let ID = prompt("Bienvenue dans notre expérience, vous allez voir des mots de couleurs différentes, veuillez répondre à la couleur du mot et non pas au mot lui même. Appuyez sur une touche pour commencer l'expérience");
 
 
