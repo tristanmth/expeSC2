@@ -1,6 +1,6 @@
 let start_time = new Date().getTime();
 let end_time = new Date().getTime();
-let randomChar = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
+let randomChar = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19];
 let mesures = [];
 let mesureX = [];
 let mesureY = [];
@@ -14,7 +14,6 @@ let count = 2;
 let X0;
 let Y0;
 let IT;
-
 /**
  * Petite partie pour les constances
  */
@@ -149,10 +148,9 @@ let launchExp = (congruent) => {
         }
     }, 500);
     num_question++;
-    let random = randomChar[getRandomInt(20 - num_question)];
+    let random = randomChar[getRandomInt(21 - num_question)];
     randomChar = randomChar.filter(item => item !== random);
     start_time = new Date().getTime();
-
 
     let colorMap = prop_congruence ? colorMapCongruence : colorMapIncongruence;
     random = parseInt(random);
@@ -163,6 +161,7 @@ let launchExp = (congruent) => {
     } else {
         clearInterval(interVal);
         word.textContent = "";
+        document.getElementById("StartButton").hidden = true;
         savedata({ mesureX, mesureY });
     }
 }
