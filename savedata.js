@@ -43,8 +43,8 @@ const colorMapCongruence = [
     { word: "JAUNE", color: "blue" ,congruence_color: false,prop_congruence:true},
     { word: "JAUNE", color: "blue" ,congruence_color: false,prop_congruence:true},
 
-    { word: "BLEU", color: "blue",congruence_color: false,prop_congruence:false },
-    { word: "JAUNE", color: "yellow" ,congruence_color: false,prop_congruence:false},
+    { word: "BLEU", color: "blue",congruence_color: true,prop_congruence:false },
+    { word: "JAUNE", color: "yellow" ,congruence_color: true,prop_congruence:false},
 
 ];
 
