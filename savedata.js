@@ -8,6 +8,7 @@ let num_question = 0;
 let interVal;
 let bougeInter;
 let congruence;
+let prop_congr;
 let prop_congruence =false;
 let bouge = false;
 let count = 2;
@@ -22,54 +23,55 @@ const word = document.getElementById("word");
 const order = document.querySelector("div[id=order]");
 
 const colorMapCongruence = [
-    { word: "ROUGE", color: 'red' ,congruence_color: true},
-    { word: "ROUGE", color: 'red' ,congruence_color: true},
-    { word: "ROUGE", color: 'red' ,congruence_color: true},
-    { word: "ROUGE", color: 'red' ,congruence_color: true},
-    { word: "VERT", color: "green",congruence_color: true },
-    { word: "VERT", color: "green",congruence_color: true },
-    { word: "VERT", color: "green" ,congruence_color: true},
-    { word: "VERT", color: "green" ,congruence_color: true},
-    { word: "VERT", color: "red" ,congruence_color: false},
-    { word: "ROUGE", color: "green" ,congruence_color: false},
+    { word: "ROUGE", color: 'red' ,congruence_color: true,prop_congruence:true},
+    { word: "ROUGE", color: 'red' ,congruence_color: true,prop_congruence:true},
+    { word: "ROUGE", color: 'red' ,congruence_color: true,prop_congruence:true},
+    { word: "ROUGE", color: 'red' ,congruence_color: true,prop_congruence:true},
+    { word: "VERT", color: "green",congruence_color: true ,prop_congruence:true},
+    { word: "VERT", color: "green",congruence_color: true,prop_congruence:true },
+    { word: "VERT", color: "green" ,congruence_color: true,prop_congruence:true},
+    { word: "VERT", color: "green" ,congruence_color: true,prop_congruence:true},
+    { word: "VERT", color: "red" ,congruence_color: false,prop_congruence:false},
+    { word: "ROUGE", color: "green" ,congruence_color: false,prop_congruence:false},
 
-    { word: "BLEU", color: "yellow" ,congruence_color: true},
-    { word: "BLEU", color: "yellow" ,congruence_color: true},
-    { word: "BLEU", color: "yellow" ,congruence_color: true},
-    { word: "BLEU", color: "yellow" ,congruence_color: true},
-    { word: "JAUNE", color: "blue" ,congruence_color: true},
-    { word: "JAUNE", color: "blue" ,congruence_color: true},
-    { word: "JAUNE", color: "blue" ,congruence_color: true},
-    { word: "JAUNE", color: "blue" ,congruence_color: true},
+    { word: "BLEU", color: "yellow" ,congruence_color: false,prop_congruence:true},
+    { word: "BLEU", color: "yellow" ,congruence_color: false,prop_congruence:true},
+    { word: "BLEU", color: "yellow" ,congruence_color: false,prop_congruence:true},
+    { word: "BLEU", color: "yellow" ,congruence_color: false,prop_congruence:true},
+    { word: "JAUNE", color: "blue" ,congruence_color: false,prop_congruence:true},
+    { word: "JAUNE", color: "blue" ,congruence_color: false,prop_congruence:true},
+    { word: "JAUNE", color: "blue" ,congruence_color: false,prop_congruence:true},
+    { word: "JAUNE", color: "blue" ,congruence_color: false,prop_congruence:true},
 
-    { word: "BLEU", color: "blue",congruence_color: false },
-    { word: "JAUNE", color: "yellow" ,congruence_color: false},
+    { word: "BLEU", color: "blue",congruence_color: false,prop_congruence:false },
+    { word: "JAUNE", color: "yellow" ,congruence_color: false,prop_congruence:false},
 
 ];
 
 const colorMapIncongruence = [
-    { word: "ROUGE", color: 'red',congruence_color: true},
-    { word: "VERT", color: "green" ,congruence_color: true},
-    { word: "VERT", color: "red",congruence_color: false },
-    { word: "VERT", color: "red",congruence_color: false },
-    { word: "VERT", color: "red" ,congruence_color: false},
-    { word: "VERT", color: "red" ,congruence_color: false},
-    { word: "ROUGE", color: "green",congruence_color: false },
-    { word: "ROUGE", color: "green" ,congruence_color: false},
-    { word: "ROUGE", color: "green",congruence_color: false },
-    { word: "ROUGE", color: "green",congruence_color: false },
+    { word: "ROUGE", color: 'red',congruence_color: true,prop_congruence:false},
+    { word: "VERT", color: "green" ,congruence_color: true,prop_congruence:false},
 
-    { word: "BLEU", color: "blue" ,congruence_color: true},
-    { word: "JAUNE", color: "yellow",congruence_color: true },
-    { word: "BLEU", color: "blue" ,congruence_color: true},
-    { word: "JAUNE", color: "yellow" ,congruence_color: true},
-    { word: "BLEU", color: "blue" ,congruence_color: true},
-    { word: "JAUNE", color: "yellow" ,congruence_color: true},
-    { word: "BLEU", color: "blue" ,congruence_color: true},
-    { word: "JAUNE", color: "yellow" ,congruence_color: true},
+    { word: "VERT", color: "red",congruence_color: false ,prop_congruence: true},
+    { word: "VERT", color: "red",congruence_color: false,prop_congruence: true },
+    { word: "VERT", color: "red" ,congruence_color: false,prop_congruence: true},
+    { word: "VERT", color: "red" ,congruence_color: false,prop_congruence: true},
+    { word: "ROUGE", color: "green",congruence_color: false ,prop_congruence: true},
+    { word: "ROUGE", color: "green" ,congruence_color: false,prop_congruence: true},
+    { word: "ROUGE", color: "green",congruence_color: false ,prop_congruence: true},
+    { word: "ROUGE", color: "green",congruence_color: false ,prop_congruence: true},
 
-    { word: "BLEU", color: "yellow",congruence_color: false },
-    { word: "JAUNE", color: "blue" ,congruence_color: false},
+    { word: "BLEU", color: "blue" ,congruence_color: true,prop_congruence: true},
+    { word: "JAUNE", color: "yellow",congruence_color: true ,prop_congruence: true},
+    { word: "BLEU", color: "blue" ,congruence_color: true,prop_congruence: true},
+    { word: "JAUNE", color: "yellow" ,congruence_color: true,prop_congruence: true},
+    { word: "BLEU", color: "blue" ,congruence_color: true,prop_congruence: true},
+    { word: "JAUNE", color: "yellow" ,congruence_color: true,prop_congruence: true},
+    { word: "BLEU", color: "blue" ,congruence_color: true,prop_congruence: true},
+    { word: "JAUNE", color: "yellow" ,congruence_color: true,prop_congruence: true},
+
+    { word: "BLEU", color: "yellow",congruence_color: false,prop_congruence:false },
+    { word: "JAUNE", color: "blue" ,congruence_color: false,prop_congruence:false},
 
 ];
 let savedata = (data) => {
@@ -158,6 +160,7 @@ let launchExp = (congruent) => {
         word.textContent = colorMap[random].word;
         word.style.color = colorMap[random].color;
         congruence = colorMap[random].congruence_color;
+        prop_congr = colorMap[random].prop_congruence;
     } else {
         clearInterval(interVal);
         word.textContent = "";
@@ -182,8 +185,8 @@ function reponse(reponse) {
     mesureY.push("IT "+IT);
     mesureX.push("congruence {"+ congruence + "}");
     mesureY.push("congruence {"+ congruence+ "}");
-    mesureX.push("proportion {"+ prop_congruence + "}");
-    mesureY.push("proportion {"+ prop_congruence + "}");
+    mesureX.push("proportion {"+ prop_congr + "}");
+    mesureY.push("proportion {"+ prop_congr + "}");
     mesureX.push("réponse {"+reponse + "}");
     mesureY.push("réponse {"+reponse + "}");
     mesureX.push(reponse===word.style.color);
