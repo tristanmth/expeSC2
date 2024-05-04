@@ -3,10 +3,78 @@ library(ggpubr)
 library(rstatix)
 
 #choisir un autre fichier pour les tests
-dat1 <- fromJSON("https://rafael.laboissiere.net/m1-miashs-2024-s8/Cho0gooz/data/2024-05-02-20-44-20.json")
+dat <- fromJSON("https://rafael.laboissiere.net/m1-miashs-2024-s8/Cho0gooz/data/2024-05-02-20-44-20.json")
+testX = unlist(dat$mesureX)
+testY = unlist(dat$mesureY)
 
-testX = unlist(dat1$mesureX)
-testY = unlist(dat1$mesureY)
+dat <- fromJSON("https://rafael.laboissiere.net/m1-miashs-2024-s8/Cho0gooz/data/2024-05-02-20-46-05.json")
+testX = append(testX,unlist(dat$mesureX))
+testY = append(testY,unlist(dat$mesureY))
+
+dat <- fromJSON("https://rafael.laboissiere.net/m1-miashs-2024-s8/Cho0gooz/data/2024-05-02-20-48-40.json")
+testX = append(testX,unlist(dat$mesureX))
+testY = append(testY,unlist(dat$mesureY))
+
+dat <- fromJSON("https://rafael.laboissiere.net/m1-miashs-2024-s8/Cho0gooz/data/2024-05-02-20-49-48.json")
+testX = append(testX,unlist(dat$mesureX))
+testY = append(testY,unlist(dat$mesureY))
+
+dat <- fromJSON("https://rafael.laboissiere.net/m1-miashs-2024-s8/Cho0gooz/data/2024-05-04-12-39-46.json")
+testX = append(testX,unlist(dat$mesureX))
+testY = append(testY,unlist(dat$mesureY))
+
+dat <- fromJSON("https://rafael.laboissiere.net/m1-miashs-2024-s8/Cho0gooz/data/2024-05-04-12-40-40.json")
+testX = append(testX,unlist(dat$mesureX))
+testY = append(testY,unlist(dat$mesureY))
+
+dat <- fromJSON("https://rafael.laboissiere.net/m1-miashs-2024-s8/Cho0gooz/data/2024-05-04-12-41-44.json")
+testX = append(testX,unlist(dat$mesureX))
+testY = append(testY,unlist(dat$mesureY))
+
+dat <- fromJSON("https://rafael.laboissiere.net/m1-miashs-2024-s8/Cho0gooz/data/2024-05-04-12-42-25.json")
+testX = append(testX,unlist(dat$mesureX))
+testY = append(testY,unlist(dat$mesureY))
+
+dat <- fromJSON("https://rafael.laboissiere.net/m1-miashs-2024-s8/Cho0gooz/data/2024-05-04-12-43-04.json")
+testX = append(testX,unlist(dat$mesureX))
+testY = append(testY,unlist(dat$mesureY))
+
+dat <- fromJSON("https://rafael.laboissiere.net/m1-miashs-2024-s8/Cho0gooz/data/2024-05-04-12-43-45.json")
+testX = append(testX,unlist(dat$mesureX))
+testY = append(testY,unlist(dat$mesureY))
+
+dat <- fromJSON("https://rafael.laboissiere.net/m1-miashs-2024-s8/Cho0gooz/data/2024-05-04-12-44-29.json")
+testX = append(testX,unlist(dat$mesureX))
+testY = append(testY,unlist(dat$mesureY))
+
+dat <- fromJSON("https://rafael.laboissiere.net/m1-miashs-2024-s8/Cho0gooz/data/2024-05-04-12-45-07.json")
+testX = append(testX,unlist(dat$mesureX))
+testY = append(testY,unlist(dat$mesureY))
+
+dat <- fromJSON("https://rafael.laboissiere.net/m1-miashs-2024-s8/Cho0gooz/data/2024-05-04-12-45-48.json")
+testX = append(testX,unlist(dat$mesureX))
+testY = append(testY,unlist(dat$mesureY))
+
+dat <- fromJSON("https://rafael.laboissiere.net/m1-miashs-2024-s8/Cho0gooz/data/2024-05-04-12-46-28.json")
+testX = append(testX,unlist(dat$mesureX))
+testY = append(testY,unlist(dat$mesureY))
+
+dat <- fromJSON("https://rafael.laboissiere.net/m1-miashs-2024-s8/Cho0gooz/data/2024-05-04-12-47-10.json")
+testX = append(testX,unlist(dat$mesureX))
+testY = append(testY,unlist(dat$mesureY))
+
+dat <- fromJSON("https://rafael.laboissiere.net/m1-miashs-2024-s8/Cho0gooz/data/2024-05-04-12-47-50.json")
+testX = append(testX,unlist(dat$mesureX))
+testY = append(testY,unlist(dat$mesureY))
+
+dat <- fromJSON("https://rafael.laboissiere.net/m1-miashs-2024-s8/Cho0gooz/data/2024-05-04-12-48-30.json")
+testX = append(testX,unlist(dat$mesureX))
+testY = append(testY,unlist(dat$mesureY))
+
+dat <- fromJSON("https://rafael.laboissiere.net/m1-miashs-2024-s8/Cho0gooz/data/2024-05-04-12-49-09.json")
+testX = append(testX,unlist(dat$mesureX))
+testY = append(testY,unlist(dat$mesureY))
+
 
 df <- data.frame(subject=numeric(),trial=character(),response=character(),congruence=numeric(),prop_congr = numeric(),IT=numeric(),RT=numeric(),error = numeric(),auc = numeric())
 X = c()
@@ -81,14 +149,18 @@ for(k in 1:len){
 coord = cbind(coord,X,Y)
 
 i = 0
+attach(df)
 plot (coord[,1],coord[,2], asp = 1)
-while(i<=40){
-  lines (coord[,i+1], coord[,i+2],col = "green")
+while(i<=length(coord[1,])){
+  if(df$congruence[i+1] == 1){
+    lines (coord[,i+1], coord[,i+2],col = "red")
+  }else{
+    lines (coord[,i+1], coord[,i+2],col = "green")
+  }
   print(i)
-  print(area.polygon (append(coord[,i+1],coord[1,i+1]), append(coord[,i+2],coord[1,i+2])))
   i= i+2
 }
 
-attach(df)
+
 data = aggregate(auc~subject*congruence*prop_congr,df,mean)
 boxplot(auc~congruence*prop_congr,data = data)
