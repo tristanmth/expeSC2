@@ -1,0 +1,45 @@
+---
+title: "Reproduction d'experience : Brundt et al.  Early and late indications of item-specific control in a Stroop mouse tracking study"
+author: "Tristan Mathon , Vassili Zarch"
+date: "`r Sys.Date()`"
+output: 
+  pdf_document : 
+    df_print: paged
+    toc: true
+    keep_tex: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+\newpage
+
+# Introduction
+
+L'étude se penche sur notre capacité à contrôler nos actions en fonction des objectifs, souvent explorée à travers des tâches de résolution de conflits comme le test de Stroop. Elle observe comment nous réagissons lorsque des informations contradictoires se présentent, telles que devoir dire la couleur d'un mot, même si le mot lui-même est écrit dans une couleur différente. Cette étude met particulièrement l'accent sur l'effet de séquence de congruence, qui reflète comment la performance dans la tâche de Stroop est influencée par la congruence du précédent essai. De plus, l'étude utilise une méthode de suivi de la souris pour observer les réponses des participants. Cette méthode permet d'analyser non seulement le temps de réaction, mais aussi les trajectoires de mouvement de la souris, offrant ainsi une compréhension plus approfondie des processus de contrôle cognitif en temps réel. Des études antérieures ont montré que les mouvements de souris peuvent refléter des effets similaires à ceux observés dans les tâches traditionnelles de résolution de conflits, telles que le test de Stroop, ce qui suggère que le suivi de la souris est une méthode prometteuse pour étudier le contrôle cognitif. En résumé, l'étude explore comment notre capacité à gérer les conflits mentaux affecte non seulement nos décisions initiales, mais aussi nos actions, même après avoir pris une décision. Elle examine en particulier comment l'effet de séquence de congruence influence la performance dans la tâche de Stroop, et comment le suivi de la souris peut être utilisé pour étudier ces processus de manière détaillée et dynamique.
+
+# Méthode
+
+Participant Nos \_\_ participants sont nos proches. Agés de \_\_ à \_\_ ans, ils ont tous une vision normale ou corrigée à la normale. Tache et procedure Avant le début de l'expérience, les participants ont été brièvement informés de la procédure. Ensuite, ils ont été placés devant un écran d'ordinateur. Les participants ont été présentés avec quatre boîtes de réponse noires encadrées en blanc sur un fond noir. Les boîtes étaient affichées en haut de l'écran et étaient remplies d'un mot de couleur imprimé en lettres blanches (de gauche à droite "ROUGE", "BLEU", "JAUNE", et "VERT"). Les boîtes de réponse sont restées visibles tout au long de l'expérience.
+
+Les stimuli dans l'expérience présente se composaient de quatre mots de couleur rouge, bleu, jaune et vert. Ces mots étaient écrit dans l'une des quatre mêmes couleurs, avec la restriction que le rouge et le vert étaient toujours écrit en rouge ou vert, et le bleu et le jaune toujours en bleu ou jaune. Ces mots de couleur et couleurs d’écriture étaient appariés de manière à éviter les problèmes de contingence initiale. Les mots de couleur et les couleurs d’écriture étaient appariés de cette manière spécifique pour optimiser le suivi de la souris. Pour l'une des paires, 80% des essais étaient congruents, tandis que pour l'autre paire, seuls 20% des essais étaient congruents (contrebalancés entre les participants). Cela permettait d'examiner l'effet de proportion congruente spécifique à l'élément.
+
+Au début de chaque essai, un bouton de démarrage apparaissait au centre en bas de l'écran. Un stimulus était présenté juste au-dessus de l'emplacement du bouton de démarrage. L'intervalle était inclus pour séparer le composant moteur du clic sur le bouton de démarrage du composant moteur de l'initiation du mouvement de la souris, et permettre aux participants de déplacer leur attention de la clique de démarrage à l'emplacement du stimulus. Il fallait cliquer sur le bouton de démarrage, de sorte que les trajectoires de la souris partaient toujours du même endroit. Les participants ont été instruits de déplacer la souris aussi rapidement que possible du bouton de démarrage vers la boîte de réponse dont le mot de couleur correspondait correctement à la couleur d'encre du stimulus et de cliquer sur la boîte pour enregistrer leur choix. Les participants pouvaient utiliser leur main préférée pour répondre. Un essai se terminait une fois qu'ils avaient cliqué sur l'une des boîtes de réponse. Lorsque les participants cliquèrent sur la mauvaise boîte, un 'X' rouge apparaissait au centre de l'écran pendant 2s, après quoi ils pouvaient commencer le prochain essai. Lorsque les participants initiaient le mouvement de la souris plus de 500 ms après la présentation du stimulus, l'essai était suivi d'un message les encourageant à commencer à bouger plus tôt lors des essais suivants. Cela a été fait pour s'assurer que les participants n'attendaient pas stratégiquement d'initier leur mouvement jusqu'à ce que la sélection de la réponse correcte soit entièrement terminée. 
+
+# Traitement des données
+Le logiciel a enregistré les coordonnées x et y du curseur de la souris toutes les 13 millisecondes. De plus, il a enregistré le temps de performance lors de chaque essai en enregistrant le nombre de millisecondes écoulées depuis la présentation du stimulus. Sur la base de ces données, nous avons déterminé IT, MT et AUC pour étudier les performances des participants. IT fait référence au temps en millisecondes entre la présentation du stimulus et le début du mouvement de la souris (c'est-à-dire le moment où les coordonnées x, y diffèrent pour la première fois de celles de la position de départ). MT est le temps total en millisecondes nécessaire au participant pour déplacer la souris du bouton de départ pour cliquer sur la boîte de réponse. L'AUC est l'aire géométrique entre le mouvement de la souris enregistré et la trajectoire optimale (qui est une ligne droite du bouton de départ à la boîte de réponse). Cette mesure est basée sur les données de trajectoire normalisées et est donc sans dimension. Elle reflète l'attraction globale vers une alternative de réponse - une aire plus grande indique une attraction plus forte vers l'alternative et plus de conflits. Nous avons calculé chacune de ces mesures (c'est-à-dire IT, MT, AUC) pour les essais congruents et incongruents dans les paires congruentes à 80 % et les paires congruentes à 20 % pour chaque participant. De plus, les essais ont été exclus des analyses lorsque le MT dépassait plus de 3 écarts-types de la moyenne entre les participants.
+
+# Resultat
+
+```{r}
+
+```
+
+# Discussion
+
+# Bibliographie
+
+Bundt C, Ruitenberg MFL, Abrahamse EL, Notebaert W (2018) Early and late indications of item-specific control in a Stroop mouse tracking study. PLoS ONE 13(5): e0197278. <https://doi.org/10.1371/journal.pone.0197278>
+
+# Annexes
